@@ -18,9 +18,51 @@ window.onload = function() {
 }
 
 function startGame(){
-    
+    //Choose board difficulty
+    let board;
+    if(id("diff-1").checked) board = easy[0];
+    if(id("diff-2").checked) board = medium[0];
+    else board = hard[0];
+    //Set lives to 3 and eanable selecting numbers and tiles
+    lives = 3;
+    disableSelect = false;
+    id("live").textContent = "Live Remaining: " + lives;
+    // Creates board based on difficulty
+    generateBoard(board);
 }
+
+function generateBoard(board){
+    //Clear previsous board
+    clearPrevious();
+    //Let used to increment tile ids
+    let idCount = 0;
+}
+
+function clearPrevious(){
+    //Access all of the tiles
+    let tiles = qsa(".tile");
+    for(let i = 0; i < tiles.length; I++){
+        tiles[i].remove();
+    }
+    //If there is a timer clear it
+    if(timer) clearTimeout(timer);
+
+    //Deselect any numbers
+    for(let i = 0; i < id("number-container").children.length; i++){
+        id("number-container").children[i].classList.remove("selected");
+    }
+    selectedTile = null;
+    selectedNum = null;
+} power
 
 function id(id) {
     return document.getElementById(id);
+}
+
+function  qs(selector) {
+    return document.querySelector(selector);
+}
+
+function qsa(selector){
+    return document.querySelectorAll(selector);
 }
